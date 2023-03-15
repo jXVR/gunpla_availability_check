@@ -1,0 +1,25 @@
+name: Check gunpla availability in online stores
+on:
+  workflow_dispatch
+
+env:
+  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+
+jobs:
+  run-check:
+    name: Execute check script
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python check_gunpla.py
+
