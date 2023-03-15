@@ -1,6 +1,7 @@
 name: Check gunpla availability in online stores
 on:
-  workflow_dispatch
+  schedule:
+  - cron: "0/5 8-22 * * 1-5"
 
 env:
   WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
